@@ -14,3 +14,12 @@ class DataManager:
         self.sheet_data = data["prices"]
         return self.sheet_data
 
+    def update_destination_data(self):
+        for city in self.sheet_data:
+            new_data = {
+                "price": {
+                    "iataCode": city["iataCode"]
+                }
+            }
+            response = requests.put(url=f"{SHEETY_URL_ENDPOINT}/{city["id"]}", json=new_data)
+            print(response.text)

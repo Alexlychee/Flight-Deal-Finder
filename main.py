@@ -11,3 +11,5 @@ if sheet_data[0]["iataCode"] == "":
         row["iataCode"] = flight_search.get_destination_code(row["city"])
     pprint(f"sheetdata:\n {sheet_data}")
 
+    data_manager.sheet_data = sheet_data
+    data_manager.update_destination_data()
