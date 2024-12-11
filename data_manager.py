@@ -1,11 +1,17 @@
+import os
 import requests
+from requests.auth import HTTPBasicAuth
 from pprint import pprint
+from dotenv import load_dotenv
 
-SHEETY_URL_ENDPOINT = "https://api.sheety.co/f83f5bdcf3c2f74a3d16e3a94425ffca/flightDeals/prices"
+SHEETY_URL_ENDPOINT = os.getenv("ENV_SHEETY_URL")
 
 class DataManager:
     # This class is responsible for talking to the Google Sheet.
     def __init__(self):
+        self.user = os.environ["SHEETY_USERNAME"]
+        self.password = os.environ["SHEETY_PASS"]
+        self._authorization = HTTPBasicAuth(self.user, self.password)
         self.sheet_data = {}
 
     def get_destination_data(self):
