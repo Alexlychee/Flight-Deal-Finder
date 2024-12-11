@@ -4,6 +4,7 @@ from requests.auth import HTTPBasicAuth
 from pprint import pprint
 from dotenv import load_dotenv
 
+load_dotenv()
 SHEETY_URL_ENDPOINT = os.getenv("ENV_SHEETY_URL")
 
 class DataManager:
@@ -17,7 +18,7 @@ class DataManager:
     def get_destination_data(self):
         response = requests.get(url=SHEETY_URL_ENDPOINT)
         data = response.json()
-        self.sheet_data = data["prices"]
+        self.sheet_data = data['prices']
         return self.sheet_data
 
     def update_destination_data(self):
